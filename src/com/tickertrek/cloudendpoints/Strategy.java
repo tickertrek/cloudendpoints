@@ -20,6 +20,7 @@ public class Strategy {
   private Key key;
   
   String  userid;
+  // Name of the strategy
   String  strategyname;
   String  type;
   String  listingtype;

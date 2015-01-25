@@ -61,6 +61,21 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
+    "helloworld.greetings.listGreeting" : {
+      "path" : "hellogreeting",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "325927413109-bietqrj8rorl8i8ja5i6pu5uulo2l8ln.apps.googleusercontent.com" ],
+      "clientIds" : [ "325927413109-bietqrj8rorl8i8ja5i6pu5uulo2l8ln.apps.googleusercontent.com", "replace this with your Android client ID", "replace this with your iOS client ID" ],
+      "rosyMethod" : "com.tickertrek.cloudendpoints.Greetings.listGreeting",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "helloworld.greetings.getGreeting" : {
       "path" : "hellogreeting/{id}",
       "httpMethod" : "GET",
@@ -76,21 +91,6 @@
             "required" : true
           }
         },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "helloworld.greetings.listGreeting" : {
-      "path" : "hellogreeting",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ "325927413109-bietqrj8rorl8i8ja5i6pu5uulo2l8ln.apps.googleusercontent.com" ],
-      "clientIds" : [ "325927413109-bietqrj8rorl8i8ja5i6pu5uulo2l8ln.apps.googleusercontent.com", "replace this with your Android client ID", "replace this with your iOS client ID" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.Greetings.listGreeting",
-      "request" : {
         "body" : "empty"
       },
       "response" : {
@@ -136,14 +136,14 @@
           "$ref" : "HelloGreeting"
         }
       },
-      "com.tickertrek.cloudendpoints.Greetings.getGreeting" : {
-        "response" : {
-          "$ref" : "HelloGreeting"
-        }
-      },
       "com.tickertrek.cloudendpoints.Greetings.listGreeting" : {
         "response" : {
           "$ref" : "HelloGreetingCollection"
+        }
+      },
+      "com.tickertrek.cloudendpoints.Greetings.getGreeting" : {
+        "response" : {
+          "$ref" : "HelloGreeting"
         }
       }
     }
