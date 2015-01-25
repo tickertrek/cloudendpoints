@@ -1,0 +1,13 @@
+package com.tickertrek.cloudendpoints;
+
+/**
+ * Contains the client IDs and scopes for allowed clients consuming the helloworld API.
+ */
+public class Constants {
+  public static final String WEB_CLIENT_ID = "325927413109-bietqrj8rorl8i8ja5i6pu5uulo2l8ln.apps.googleusercontent.com";
+  public static final String ANDROID_CLIENT_ID = "replace this with your Android client ID";
+  public static final String IOS_CLIENT_ID = "replace this with your iOS client ID";
+  public static final String ANDROID_AUDIENCE = WEB_CLIENT_ID;
+
+  public static final String EMAIL_SCOPE = "https://www.googleapis.com/auth/userinfo.email";
+}
