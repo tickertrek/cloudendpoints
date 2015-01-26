@@ -15,7 +15,7 @@
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
   <init-param>
    <param-name>services</param-name>
-   <param-value>com.tickertrek.cloudendpoints.Greetings,com.tickertrek.cloudendpoints.StrategyEndpoint</param-value>
+   <param-value>com.tickertrek.cloudendpoints.Greetings,com.tickertrek.cloudendpoints.api.OrderEndpoint,com.tickertrek.cloudendpoints.api.PositionEndpoint,com.tickertrek.cloudendpoints.api.StrategyEndpoint,com.tickertrek.cloudendpoints.api.UserProfileEndpoint</param-value>
   </init-param>
  </servlet>
  <servlet-mapping>

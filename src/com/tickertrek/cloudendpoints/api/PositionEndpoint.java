@@ -1,7 +1,7 @@
-package com.tickertrek.cloudendpoints;
+package com.tickertrek.cloudendpoints.api;
 
 import com.tickertrek.cloudendpoints.EMF;
-
+import com.tickertrek.cloudendpoints.entity.Position;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
@@ -18,10 +18,8 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-@Api(name = "strategyendpoint",
-	version = "v1",
-	namespace = @ApiNamespace(ownerDomain = "tickertrek.com", ownerName = "tickertrek.com", packagePath = "cloudendpoints"))
-public class StrategyEndpoint {
+@Api(name = "positionendpoint", namespace = @ApiNamespace(ownerDomain = "tickertrek.com", ownerName = "tickertrek.com", packagePath = "cloudendpoints.entity"))
+public class PositionEndpoint {
 
 	/**
 	 * This method lists all the entities inserted in datastore.
@@ -31,18 +29,18 @@ public class StrategyEndpoint {
 	 * persisted and a cursor to the next page.
 	 */
 	@SuppressWarnings({ "unchecked", "unused" })
-	@ApiMethod(name = "listStrategy")
-	public CollectionResponse<Strategy> listStrategy(
+	@ApiMethod(name = "listPosition")
+	public CollectionResponse<Position> listPosition(
 			@Nullable @Named("cursor") String cursorString,
 			@Nullable @Named("limit") Integer limit) {
 
 		EntityManager mgr = null;
 		Cursor cursor = null;
-		List<Strategy> execute = null;
+		List<Position> execute = null;
 
 		try {
 			mgr = getEntityManager();
-			Query query = mgr.createQuery("select from Strategy as Strategy");
+			Query query = mgr.createQuery("select from Position as Position");
 			if (cursorString != null && cursorString != "") {
 				cursor = Cursor.fromWebSafeString(cursorString);
 				query.setHint(JPACursorHelper.CURSOR_HINT, cursor);
@@ -53,20 +51,20 @@ public class StrategyEndpoint {
 				query.setMaxResults(limit);
 			}
 
-			execute = (List<Strategy>) query.getResultList();
+			execute = (List<Position>) query.getResultList();
 			cursor = JPACursorHelper.getCursor(execute);
 			if (cursor != null)
 				cursorString = cursor.toWebSafeString();
 
 			// Tight loop for fetching all entities from datastore and accomodate
 			// for lazy fetch.
-			for (Strategy obj : execute)
+			for (Position obj : execute)
 				;
 		} finally {
 			mgr.close();
 		}
 
-		return CollectionResponse.<Strategy> builder().setItems(execute)
+		return CollectionResponse.<Position> builder().setItems(execute)
 				.setNextPageToken(cursorString).build();
 	}
 
@@ -76,16 +74,16 @@ public class StrategyEndpoint {
 	 * @param id the primary key of the java bean.
 	 * @return The entity with primary key id.
 	 */
-	@ApiMethod(name = "getStrategy")
-	public Strategy getStrategy(@Named("id") Long id) {
+	@ApiMethod(name = "getPosition")
+	public Position getPosition(@Named("id") Long id) {
 		EntityManager mgr = getEntityManager();
-		Strategy strategy = null;
+		Position position = null;
 		try {
-			strategy = mgr.find(Strategy.class, id);
+			position = mgr.find(Position.class, id);
 		} finally {
 			mgr.close();
 		}
-		return strategy;
+		return position;
 	}
 
 	/**
@@ -93,21 +91,21 @@ public class StrategyEndpoint {
 	 * exists in the datastore, an exception is thrown.
 	 * It uses HTTP POST method.
 	 *
-	 * @param strategy the entity to be inserted.
+	 * @param position the entity to be inserted.
 	 * @return The inserted entity.
 	 */
-	@ApiMethod(name = "insertStrategy")
-	public Strategy insertStrategy(Strategy strategy) {
+	@ApiMethod(name = "insertPosition")
+	public Position insertPosition(Position position) {
 		EntityManager mgr = getEntityManager();
 		try {
-			if (containsStrategy(strategy)) {
-				throw new EntityExistsException("Object already exists");
-			}
-			mgr.persist(strategy);
+			//if (containsPosition(position)) {
+			//	throw new EntityExistsException("Object already exists");
+			//}
+			mgr.persist(position);
 		} finally {
 			mgr.close();
 		}
-		return strategy;
+		return position;
 	}
 
 	/**
@@ -115,21 +113,21 @@ public class StrategyEndpoint {
 	 * exist in the datastore, an exception is thrown.
 	 * It uses HTTP PUT method.
 	 *
-	 * @param strategy the entity to be updated.
+	 * @param position the entity to be updated.
 	 * @return The updated entity.
 	 */
-	@ApiMethod(name = "updateStrategy")
-	public Strategy updateStrategy(Strategy strategy) {
+	@ApiMethod(name = "updatePosition")
+	public Position updatePosition(Position position) {
 		EntityManager mgr = getEntityManager();
 		try {
-			if (!containsStrategy(strategy)) {
+			if (!containsPosition(position)) {
 				throw new EntityNotFoundException("Object does not exist");
 			}
-			mgr.persist(strategy);
+			mgr.persist(position);
 		} finally {
 			mgr.close();
 		}
-		return strategy;
+		return position;
 	}
 
 	/**
@@ -138,22 +136,22 @@ public class StrategyEndpoint {
 	 *
 	 * @param id the primary key of the entity to be deleted.
 	 */
-	@ApiMethod(name = "removeStrategy")
-	public void removeStrategy(@Named("id") Long id) {
+	@ApiMethod(name = "removePosition")
+	public void removePosition(@Named("id") Long id) {
 		EntityManager mgr = getEntityManager();
 		try {
-			Strategy strategy = mgr.find(Strategy.class, id);
-			mgr.remove(strategy);
+			Position position = mgr.find(Position.class, id);
+			mgr.remove(position);
 		} finally {
 			mgr.close();
 		}
 	}
 
-	private boolean containsStrategy(Strategy strategy) {
+	private boolean containsPosition(Position position) {
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;
 		try {
-			Strategy item = mgr.find(Strategy.class, strategy.getKey());
+			Position item = mgr.find(Position.class, position.getKey());
 			if (item == null) {
 				contains = false;
 			}

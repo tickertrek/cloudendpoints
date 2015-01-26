@@ -2,7 +2,7 @@
   "extends" : "thirdParty.api",
   "abstract" : false,
   "root" : "https://valued-pact-835.appspot.com/_ah/api",
-  "name" : "strategyendpoint",
+  "name" : "orderendpoint",
   "version" : "v1",
   "defaultVersion" : false,
   "adapter" : {
@@ -27,35 +27,14 @@
   "ownerName" : "tickertrek.com",
   "packagePath" : "cloudendpoints.entity",
   "methods" : {
-    "strategyendpoint.getStrategy" : {
-      "path" : "strategy/{id}",
-      "httpMethod" : "GET",
+    "orderendpoint.updateOrder" : {
+      "path" : "order",
+      "httpMethod" : "PUT",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.getStrategy",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "strategyendpoint.insertStrategy" : {
-      "path" : "strategy",
-      "httpMethod" : "POST",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.insertStrategy",
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.OrderEndpoint.updateOrder",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
@@ -64,35 +43,14 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "strategyendpoint.removeStrategy" : {
-      "path" : "strategy/{id}",
-      "httpMethod" : "DELETE",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.removeStrategy",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
-      }
-    },
-    "strategyendpoint.listStrategy" : {
-      "path" : "strategy",
+    "orderendpoint.listOrder" : {
+      "path" : "order",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.listStrategy",
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.OrderEndpoint.listOrder",
       "request" : {
         "parameters" : {
           "cursor" : {
@@ -110,14 +68,56 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "strategyendpoint.updateStrategy" : {
-      "path" : "strategy",
-      "httpMethod" : "PUT",
+    "orderendpoint.removeOrder" : {
+      "path" : "order/{id}",
+      "httpMethod" : "DELETE",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.updateStrategy",
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.OrderEndpoint.removeOrder",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "orderendpoint.getOrder" : {
+      "path" : "order/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.OrderEndpoint.getOrder",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "orderendpoint.insertOrder" : {
+      "path" : "order",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.OrderEndpoint.insertOrder",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
@@ -129,123 +129,58 @@
   },
   "descriptor" : {
     "schemas" : {
-      "Strategy" : {
-        "id" : "Strategy",
+      "Order" : {
+        "id" : "Order",
         "type" : "object",
         "properties" : {
           "key" : {
             "$ref" : "Key"
           },
-          "userkey" : {
+          "strategykey" : {
             "$ref" : "Key"
           },
-          "strategyname" : {
+          "exchange" : {
             "type" : "string"
           },
-          "type" : {
+          "symbol" : {
             "type" : "string"
           },
-          "listingtype" : {
+          "instrument" : {
             "type" : "string"
           },
-          "initialbalance" : {
+          "ordertype" : {
+            "type" : "string"
+          },
+          "pricetype" : {
+            "type" : "string"
+          },
+          "quantity" : {
+            "type" : "integer"
+          },
+          "term" : {
+            "type" : "string"
+          },
+          "price" : {
             "type" : "number"
           },
-          "currency" : {
-            "type" : "string"
+          "executionprice" : {
+            "type" : "number"
           },
-          "instrumentoptions" : {
-            "type" : "string"
-          },
-          "description" : {
-            "type" : "string"
-          },
-          "market" : {
-            "type" : "string"
-          },
-          "startdate" : {
+          "initiatetime" : {
             "type" : "string",
             "format" : "date-time"
           },
-          "ordercount" : {
-            "type" : "integer"
+          "executiontime" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "tradecount" : {
-            "type" : "integer"
+          "status" : {
+            "type" : "string"
           },
-          "profittradecount" : {
-            "type" : "integer"
-          },
-          "loosingtradecount" : {
-            "type" : "integer"
-          },
-          "profitfactor" : {
-            "type" : "number"
-          },
-          "annualreturn" : {
-            "type" : "number"
-          },
-          "overallreturn" : {
-            "type" : "number"
-          },
-          "ytdreturn" : {
-            "type" : "number"
-          },
-          "_3mreturn" : {
-            "type" : "number"
-          },
-          "maxdrawdown" : {
-            "type" : "number"
-          },
-          "sitescore" : {
-            "type" : "integer"
-          },
-          "avgwin" : {
-            "type" : "number"
-          },
-          "avgloss" : {
-            "type" : "number"
-          },
-          "viewtimes" : {
-            "type" : "integer"
-          },
-          "age" : {
-            "type" : "integer"
-          },
-          "power" : {
-            "type" : "number"
-          },
-          "balance" : {
-            "type" : "number"
-          },
-          "followers" : {
-            "$ref" : "Key"
-          },
-          "fee" : {
-            "type" : "number"
-          },
-          "freetrial" : {
-            "type" : "integer"
+          "comment" : {
+            "type" : "string"
           },
           "brokeragefee" : {
-            "type" : "number"
-          },
-          "brokeragefeetype" : {
-            "type" : "string"
-          },
-          "href" : {
-            "type" : "string"
-          },
-          "totalvalue" : {
-            "type" : "number"
-          },
-          "equity" : {
-            "type" : "number"
-          },
-          "grossgain" : {
-            "type" : "number"
-          },
-          "grossloss" : {
             "type" : "number"
           }
         }
@@ -278,14 +213,14 @@
           }
         }
       },
-      "CollectionResponse_Strategy" : {
-        "id" : "CollectionResponse_Strategy",
+      "CollectionResponse_Order" : {
+        "id" : "CollectionResponse_Order",
         "type" : "object",
         "properties" : {
           "items" : {
             "type" : "array",
             "items" : {
-              "$ref" : "Strategy"
+              "$ref" : "Order"
             }
           },
           "nextPageToken" : {
@@ -295,32 +230,32 @@
       }
     },
     "methods" : {
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.getStrategy" : {
-        "response" : {
-          "$ref" : "Strategy"
-        }
-      },
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.insertStrategy" : {
+      "com.tickertrek.cloudendpoints.api.OrderEndpoint.updateOrder" : {
         "request" : {
-          "$ref" : "Strategy"
+          "$ref" : "Order"
         },
         "response" : {
-          "$ref" : "Strategy"
+          "$ref" : "Order"
         }
       },
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.removeStrategy" : {
-      },
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.listStrategy" : {
+      "com.tickertrek.cloudendpoints.api.OrderEndpoint.listOrder" : {
         "response" : {
-          "$ref" : "CollectionResponse_Strategy"
+          "$ref" : "CollectionResponse_Order"
         }
       },
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.updateStrategy" : {
+      "com.tickertrek.cloudendpoints.api.OrderEndpoint.removeOrder" : {
+      },
+      "com.tickertrek.cloudendpoints.api.OrderEndpoint.getOrder" : {
+        "response" : {
+          "$ref" : "Order"
+        }
+      },
+      "com.tickertrek.cloudendpoints.api.OrderEndpoint.insertOrder" : {
         "request" : {
-          "$ref" : "Strategy"
+          "$ref" : "Order"
         },
         "response" : {
-          "$ref" : "Strategy"
+          "$ref" : "Order"
         }
       }
     }

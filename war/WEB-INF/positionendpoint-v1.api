@@ -2,7 +2,7 @@
   "extends" : "thirdParty.api",
   "abstract" : false,
   "root" : "https://valued-pact-835.appspot.com/_ah/api",
-  "name" : "strategyendpoint",
+  "name" : "positionendpoint",
   "version" : "v1",
   "defaultVersion" : false,
   "adapter" : {
@@ -27,14 +27,14 @@
   "ownerName" : "tickertrek.com",
   "packagePath" : "cloudendpoints.entity",
   "methods" : {
-    "strategyendpoint.getStrategy" : {
-      "path" : "strategy/{id}",
+    "positionendpoint.getPosition" : {
+      "path" : "position/{id}",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.getStrategy",
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.PositionEndpoint.getPosition",
       "request" : {
         "parameters" : {
           "id" : {
@@ -48,14 +48,14 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "strategyendpoint.insertStrategy" : {
-      "path" : "strategy",
-      "httpMethod" : "POST",
+    "positionendpoint.updatePosition" : {
+      "path" : "position",
+      "httpMethod" : "PUT",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.insertStrategy",
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.PositionEndpoint.updatePosition",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
@@ -64,14 +64,14 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "strategyendpoint.removeStrategy" : {
-      "path" : "strategy/{id}",
+    "positionendpoint.removePosition" : {
+      "path" : "position/{id}",
       "httpMethod" : "DELETE",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.removeStrategy",
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.PositionEndpoint.removePosition",
       "request" : {
         "parameters" : {
           "id" : {
@@ -85,14 +85,30 @@
         "body" : "empty"
       }
     },
-    "strategyendpoint.listStrategy" : {
-      "path" : "strategy",
+    "positionendpoint.insertPosition" : {
+      "path" : "position",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.PositionEndpoint.insertPosition",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "positionendpoint.listPosition" : {
+      "path" : "position",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.listStrategy",
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.PositionEndpoint.listPosition",
       "request" : {
         "parameters" : {
           "cursor" : {
@@ -109,143 +125,71 @@
       "response" : {
         "body" : "autoTemplate(backendResponse)"
       }
-    },
-    "strategyendpoint.updateStrategy" : {
-      "path" : "strategy",
-      "httpMethod" : "PUT",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.updateStrategy",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
     }
   },
   "descriptor" : {
     "schemas" : {
-      "Strategy" : {
-        "id" : "Strategy",
+      "Position" : {
+        "id" : "Position",
         "type" : "object",
         "properties" : {
           "key" : {
             "$ref" : "Key"
           },
-          "userkey" : {
+          "strategykey" : {
             "$ref" : "Key"
           },
-          "strategyname" : {
+          "exchange" : {
             "type" : "string"
           },
-          "type" : {
+          "symbol" : {
             "type" : "string"
           },
-          "listingtype" : {
-            "type" : "string"
+          "quantity" : {
+            "type" : "integer"
           },
-          "initialbalance" : {
-            "type" : "number"
-          },
-          "currency" : {
-            "type" : "string"
-          },
-          "instrumentoptions" : {
-            "type" : "string"
-          },
-          "description" : {
-            "type" : "string"
-          },
-          "market" : {
-            "type" : "string"
-          },
-          "startdate" : {
+          "opendate" : {
             "type" : "string",
             "format" : "date-time"
           },
-          "ordercount" : {
-            "type" : "integer"
-          },
-          "tradecount" : {
-            "type" : "integer"
-          },
-          "profittradecount" : {
-            "type" : "integer"
-          },
-          "loosingtradecount" : {
-            "type" : "integer"
-          },
-          "profitfactor" : {
+          "adjcost" : {
             "type" : "number"
           },
-          "annualreturn" : {
+          "adjcostpershare" : {
             "type" : "number"
           },
-          "overallreturn" : {
-            "type" : "number"
-          },
-          "ytdreturn" : {
-            "type" : "number"
-          },
-          "_3mreturn" : {
-            "type" : "number"
-          },
-          "maxdrawdown" : {
-            "type" : "number"
-          },
-          "sitescore" : {
-            "type" : "integer"
-          },
-          "avgwin" : {
-            "type" : "number"
-          },
-          "avgloss" : {
-            "type" : "number"
-          },
-          "viewtimes" : {
-            "type" : "integer"
-          },
-          "age" : {
-            "type" : "integer"
-          },
-          "power" : {
-            "type" : "number"
-          },
-          "balance" : {
-            "type" : "number"
-          },
-          "followers" : {
-            "$ref" : "Key"
-          },
-          "fee" : {
-            "type" : "number"
-          },
-          "freetrial" : {
-            "type" : "integer"
-          },
-          "brokeragefee" : {
-            "type" : "number"
-          },
-          "brokeragefeetype" : {
+          "openordertype" : {
             "type" : "string"
           },
-          "href" : {
+          "closedate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "closepricepershare" : {
+            "type" : "number"
+          },
+          "adjproceeds" : {
+            "type" : "number"
+          },
+          "closeordertype" : {
             "type" : "string"
           },
-          "totalvalue" : {
+          "adjgain" : {
             "type" : "number"
           },
-          "equity" : {
+          "adjgainpercentage" : {
             "type" : "number"
           },
-          "grossgain" : {
+          "positiontype" : {
+            "type" : "string"
+          },
+          "term" : {
+            "type" : "string"
+          },
+          "lastprice" : {
             "type" : "number"
           },
-          "grossloss" : {
+          "marketvalue" : {
             "type" : "number"
           }
         }
@@ -278,14 +222,14 @@
           }
         }
       },
-      "CollectionResponse_Strategy" : {
-        "id" : "CollectionResponse_Strategy",
+      "CollectionResponse_Position" : {
+        "id" : "CollectionResponse_Position",
         "type" : "object",
         "properties" : {
           "items" : {
             "type" : "array",
             "items" : {
-              "$ref" : "Strategy"
+              "$ref" : "Position"
             }
           },
           "nextPageToken" : {
@@ -295,32 +239,32 @@
       }
     },
     "methods" : {
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.getStrategy" : {
+      "com.tickertrek.cloudendpoints.api.PositionEndpoint.getPosition" : {
         "response" : {
-          "$ref" : "Strategy"
+          "$ref" : "Position"
         }
       },
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.insertStrategy" : {
+      "com.tickertrek.cloudendpoints.api.PositionEndpoint.updatePosition" : {
         "request" : {
-          "$ref" : "Strategy"
+          "$ref" : "Position"
         },
         "response" : {
-          "$ref" : "Strategy"
+          "$ref" : "Position"
         }
       },
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.removeStrategy" : {
+      "com.tickertrek.cloudendpoints.api.PositionEndpoint.removePosition" : {
       },
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.listStrategy" : {
-        "response" : {
-          "$ref" : "CollectionResponse_Strategy"
-        }
-      },
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.updateStrategy" : {
+      "com.tickertrek.cloudendpoints.api.PositionEndpoint.insertPosition" : {
         "request" : {
-          "$ref" : "Strategy"
+          "$ref" : "Position"
         },
         "response" : {
-          "$ref" : "Strategy"
+          "$ref" : "Position"
+        }
+      },
+      "com.tickertrek.cloudendpoints.api.PositionEndpoint.listPosition" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Position"
         }
       }
     }

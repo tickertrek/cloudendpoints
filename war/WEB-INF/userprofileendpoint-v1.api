@@ -2,7 +2,7 @@
   "extends" : "thirdParty.api",
   "abstract" : false,
   "root" : "https://valued-pact-835.appspot.com/_ah/api",
-  "name" : "strategyendpoint",
+  "name" : "userprofileendpoint",
   "version" : "v1",
   "defaultVersion" : false,
   "adapter" : {
@@ -27,35 +27,14 @@
   "ownerName" : "tickertrek.com",
   "packagePath" : "cloudendpoints.entity",
   "methods" : {
-    "strategyendpoint.getStrategy" : {
-      "path" : "strategy/{id}",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.getStrategy",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "strategyendpoint.insertStrategy" : {
-      "path" : "strategy",
+    "userprofileendpoint.insertUserProfile" : {
+      "path" : "userprofile",
       "httpMethod" : "POST",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.insertStrategy",
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.insertUserProfile",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
@@ -64,35 +43,14 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "strategyendpoint.removeStrategy" : {
-      "path" : "strategy/{id}",
-      "httpMethod" : "DELETE",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.removeStrategy",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
-      }
-    },
-    "strategyendpoint.listStrategy" : {
-      "path" : "strategy",
+    "userprofileendpoint.listUserProfile" : {
+      "path" : "userprofile",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.listStrategy",
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.listUserProfile",
       "request" : {
         "parameters" : {
           "cursor" : {
@@ -110,14 +68,56 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "strategyendpoint.updateStrategy" : {
-      "path" : "strategy",
+    "userprofileendpoint.removeUserProfile" : {
+      "path" : "userprofile/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.removeUserProfile",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "userprofileendpoint.getUserProfile" : {
+      "path" : "userprofile/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.getUserProfile",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "userprofileendpoint.updateUserProfile" : {
+      "path" : "userprofile",
       "httpMethod" : "PUT",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.updateStrategy",
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.updateUserProfile",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
@@ -129,124 +129,57 @@
   },
   "descriptor" : {
     "schemas" : {
-      "Strategy" : {
-        "id" : "Strategy",
+      "UserProfile" : {
+        "id" : "UserProfile",
         "type" : "object",
         "properties" : {
           "key" : {
             "$ref" : "Key"
           },
-          "userkey" : {
+          "fullname" : {
+            "type" : "string"
+          },
+          "nickname" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "contactemail" : {
+            "type" : "string"
+          },
+          "assetclass" : {
+            "type" : "string"
+          },
+          "style" : {
+            "type" : "string"
+          },
+          "holdingperiod" : {
+            "type" : "string"
+          },
+          "experience" : {
+            "type" : "string"
+          },
+          "aboutme" : {
+            "type" : "string"
+          },
+          "profession" : {
+            "type" : "string"
+          },
+          "championship" : {
+            "type" : "integer"
+          },
+          "following" : {
             "$ref" : "Key"
-          },
-          "strategyname" : {
-            "type" : "string"
-          },
-          "type" : {
-            "type" : "string"
-          },
-          "listingtype" : {
-            "type" : "string"
-          },
-          "initialbalance" : {
-            "type" : "number"
-          },
-          "currency" : {
-            "type" : "string"
-          },
-          "instrumentoptions" : {
-            "type" : "string"
-          },
-          "description" : {
-            "type" : "string"
-          },
-          "market" : {
-            "type" : "string"
-          },
-          "startdate" : {
-            "type" : "string",
-            "format" : "date-time"
-          },
-          "ordercount" : {
-            "type" : "integer"
-          },
-          "tradecount" : {
-            "type" : "integer"
-          },
-          "profittradecount" : {
-            "type" : "integer"
-          },
-          "loosingtradecount" : {
-            "type" : "integer"
-          },
-          "profitfactor" : {
-            "type" : "number"
-          },
-          "annualreturn" : {
-            "type" : "number"
-          },
-          "overallreturn" : {
-            "type" : "number"
-          },
-          "ytdreturn" : {
-            "type" : "number"
-          },
-          "_3mreturn" : {
-            "type" : "number"
-          },
-          "maxdrawdown" : {
-            "type" : "number"
-          },
-          "sitescore" : {
-            "type" : "integer"
-          },
-          "avgwin" : {
-            "type" : "number"
-          },
-          "avgloss" : {
-            "type" : "number"
-          },
-          "viewtimes" : {
-            "type" : "integer"
-          },
-          "age" : {
-            "type" : "integer"
-          },
-          "power" : {
-            "type" : "number"
-          },
-          "balance" : {
-            "type" : "number"
           },
           "followers" : {
             "$ref" : "Key"
           },
-          "fee" : {
-            "type" : "number"
-          },
-          "freetrial" : {
+          "sitescore" : {
             "type" : "integer"
           },
-          "brokeragefee" : {
-            "type" : "number"
-          },
-          "brokeragefeetype" : {
-            "type" : "string"
-          },
-          "href" : {
-            "type" : "string"
-          },
-          "totalvalue" : {
-            "type" : "number"
-          },
-          "equity" : {
-            "type" : "number"
-          },
-          "grossgain" : {
-            "type" : "number"
-          },
-          "grossloss" : {
-            "type" : "number"
+          "userrating" : {
+            "type" : "integer"
           }
         }
       },
@@ -278,14 +211,14 @@
           }
         }
       },
-      "CollectionResponse_Strategy" : {
-        "id" : "CollectionResponse_Strategy",
+      "CollectionResponse_UserProfile" : {
+        "id" : "CollectionResponse_UserProfile",
         "type" : "object",
         "properties" : {
           "items" : {
             "type" : "array",
             "items" : {
-              "$ref" : "Strategy"
+              "$ref" : "UserProfile"
             }
           },
           "nextPageToken" : {
@@ -295,32 +228,32 @@
       }
     },
     "methods" : {
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.getStrategy" : {
-        "response" : {
-          "$ref" : "Strategy"
-        }
-      },
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.insertStrategy" : {
+      "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.insertUserProfile" : {
         "request" : {
-          "$ref" : "Strategy"
+          "$ref" : "UserProfile"
         },
         "response" : {
-          "$ref" : "Strategy"
+          "$ref" : "UserProfile"
         }
       },
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.removeStrategy" : {
-      },
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.listStrategy" : {
+      "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.listUserProfile" : {
         "response" : {
-          "$ref" : "CollectionResponse_Strategy"
+          "$ref" : "CollectionResponse_UserProfile"
         }
       },
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.updateStrategy" : {
+      "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.removeUserProfile" : {
+      },
+      "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.getUserProfile" : {
+        "response" : {
+          "$ref" : "UserProfile"
+        }
+      },
+      "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.updateUserProfile" : {
         "request" : {
-          "$ref" : "Strategy"
+          "$ref" : "UserProfile"
         },
         "response" : {
-          "$ref" : "Strategy"
+          "$ref" : "UserProfile"
         }
       }
     }
