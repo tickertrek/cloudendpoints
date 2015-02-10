@@ -85,6 +85,22 @@
         "body" : "empty"
       }
     },
+    "strategyendpoint.updateStrategy" : {
+      "path" : "strategy",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.updateStrategy",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "strategyendpoint.listStrategy" : {
       "path" : "strategy",
       "httpMethod" : "GET",
@@ -105,22 +121,6 @@
           }
         },
         "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "strategyendpoint.updateStrategy" : {
-      "path" : "strategy",
-      "httpMethod" : "PUT",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.StrategyEndpoint.updateStrategy",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -310,17 +310,17 @@
       },
       "com.tickertrek.cloudendpoints.api.StrategyEndpoint.removeStrategy" : {
       },
-      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.listStrategy" : {
-        "response" : {
-          "$ref" : "CollectionResponse_Strategy"
-        }
-      },
       "com.tickertrek.cloudendpoints.api.StrategyEndpoint.updateStrategy" : {
         "request" : {
           "$ref" : "Strategy"
         },
         "response" : {
           "$ref" : "Strategy"
+        }
+      },
+      "com.tickertrek.cloudendpoints.api.StrategyEndpoint.listStrategy" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Strategy"
         }
       }
     }

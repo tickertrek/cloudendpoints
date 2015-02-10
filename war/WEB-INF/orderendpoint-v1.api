@@ -27,22 +27,6 @@
   "ownerName" : "tickertrek.com",
   "packagePath" : "cloudendpoints.entity",
   "methods" : {
-    "orderendpoint.updateOrder" : {
-      "path" : "order",
-      "httpMethod" : "PUT",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.OrderEndpoint.updateOrder",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
     "orderendpoint.listOrder" : {
       "path" : "order",
       "httpMethod" : "GET",
@@ -63,6 +47,22 @@
           }
         },
         "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "orderendpoint.updateOrder" : {
+      "path" : "order",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.OrderEndpoint.updateOrder",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -129,6 +129,21 @@
   },
   "descriptor" : {
     "schemas" : {
+      "CollectionResponse_Order" : {
+        "id" : "CollectionResponse_Order",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Order"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
       "Order" : {
         "id" : "Order",
         "type" : "object",
@@ -212,35 +227,20 @@
             "type" : "boolean"
           }
         }
-      },
-      "CollectionResponse_Order" : {
-        "id" : "CollectionResponse_Order",
-        "type" : "object",
-        "properties" : {
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "Order"
-            }
-          },
-          "nextPageToken" : {
-            "type" : "string"
-          }
-        }
       }
     },
     "methods" : {
+      "com.tickertrek.cloudendpoints.api.OrderEndpoint.listOrder" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Order"
+        }
+      },
       "com.tickertrek.cloudendpoints.api.OrderEndpoint.updateOrder" : {
         "request" : {
           "$ref" : "Order"
         },
         "response" : {
           "$ref" : "Order"
-        }
-      },
-      "com.tickertrek.cloudendpoints.api.OrderEndpoint.listOrder" : {
-        "response" : {
-          "$ref" : "CollectionResponse_Order"
         }
       },
       "com.tickertrek.cloudendpoints.api.OrderEndpoint.removeOrder" : {

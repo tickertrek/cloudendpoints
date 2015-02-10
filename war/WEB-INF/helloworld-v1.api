@@ -24,6 +24,21 @@
     "maxAge" : 0
   },
   "methods" : {
+    "helloworld.greetings.authed" : {
+      "path" : "hellogreeting/authed",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "325927413109-bietqrj8rorl8i8ja5i6pu5uulo2l8ln.apps.googleusercontent.com" ],
+      "clientIds" : [ "325927413109-bietqrj8rorl8i8ja5i6pu5uulo2l8ln.apps.googleusercontent.com", "replace this with your Android client ID", "replace this with your iOS client ID" ],
+      "rosyMethod" : "com.tickertrek.cloudendpoints.Greetings.authedGreeting",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "helloworld.greetings.multiply" : {
       "path" : "hellogreeting/{times}",
       "httpMethod" : "post",
@@ -41,21 +56,6 @@
         },
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "helloworld.greetings.authed" : {
-      "path" : "hellogreeting/authed",
-      "httpMethod" : "POST",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ "325927413109-bietqrj8rorl8i8ja5i6pu5uulo2l8ln.apps.googleusercontent.com" ],
-      "clientIds" : [ "325927413109-bietqrj8rorl8i8ja5i6pu5uulo2l8ln.apps.googleusercontent.com", "replace this with your Android client ID", "replace this with your iOS client ID" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.Greetings.authedGreeting",
-      "request" : {
-        "body" : "empty"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -123,15 +123,15 @@
       }
     },
     "methods" : {
-      "com.tickertrek.cloudendpoints.Greetings.insertGreeting" : {
-        "request" : {
-          "$ref" : "HelloGreeting"
-        },
+      "com.tickertrek.cloudendpoints.Greetings.authedGreeting" : {
         "response" : {
           "$ref" : "HelloGreeting"
         }
       },
-      "com.tickertrek.cloudendpoints.Greetings.authedGreeting" : {
+      "com.tickertrek.cloudendpoints.Greetings.insertGreeting" : {
+        "request" : {
+          "$ref" : "HelloGreeting"
+        },
         "response" : {
           "$ref" : "HelloGreeting"
         }

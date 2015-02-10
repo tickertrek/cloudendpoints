@@ -27,17 +27,47 @@
   "ownerName" : "tickertrek.com",
   "packagePath" : "cloudendpoints.entity",
   "methods" : {
-    "userprofileendpoint.insertUserProfile" : {
-      "path" : "userprofile",
+    "userprofileendpoint.registerAndLoginUserWithCode" : {
+      "path" : "registerAndLoginUserWithCode/{registerCode}",
       "httpMethod" : "POST",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.insertUserProfile",
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.registerAndLoginUserWithCode",
       "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
+        "parameters" : {
+          "registerCode" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "userprofileendpoint.authenticateUser" : {
+      "path" : "authenticateUser/{email}/{password}",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.authenticateUser",
+      "request" : {
+        "parameters" : {
+          "email" : {
+            "type" : "string",
+            "required" : true
+          },
+          "password" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -69,7 +99,7 @@
       }
     },
     "userprofileendpoint.removeUserProfile" : {
-      "path" : "userprofile/{id}",
+      "path" : "userprofile/{email}",
       "httpMethod" : "DELETE",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
@@ -78,108 +108,75 @@
       "rosyMethod" : "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.removeUserProfile",
       "request" : {
         "parameters" : {
-          "id" : {
-            "type" : "int64",
+          "email" : {
+            "type" : "string",
             "required" : true
           }
         },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
-      }
-    },
-    "userprofileendpoint.getUserProfile" : {
-      "path" : "userprofile/{id}",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.getUserProfile",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "userprofileendpoint.updateUserProfile" : {
-      "path" : "userprofile",
-      "httpMethod" : "PUT",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.updateUserProfile",
-      "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
       },
       "response" : {
-        "body" : "autoTemplate(backendResponse)"
+        "body" : "empty"
+      }
+    },
+    "userprofileendpoint.initializeCustomRegistration" : {
+      "path" : "initializeCustomRegistration/{email}/{password}/{userName}",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.initializeCustomRegistration",
+      "request" : {
+        "parameters" : {
+          "email" : {
+            "type" : "string",
+            "required" : true
+          },
+          "password" : {
+            "type" : "string",
+            "required" : true
+          },
+          "userName" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
       }
     }
   },
   "descriptor" : {
     "schemas" : {
-      "UserProfile" : {
-        "id" : "UserProfile",
+      "AuthToken" : {
+        "id" : "AuthToken",
         "type" : "object",
         "properties" : {
           "key" : {
             "$ref" : "Key"
           },
-          "fullname" : {
-            "type" : "string"
-          },
-          "nickname" : {
-            "type" : "string"
-          },
           "email" : {
             "type" : "string"
           },
-          "contactemail" : {
+          "userName" : {
             "type" : "string"
           },
-          "assetclass" : {
+          "userToken" : {
             "type" : "string"
           },
-          "style" : {
+          "originalToken" : {
             "type" : "string"
           },
-          "holdingperiod" : {
+          "tokenType" : {
             "type" : "string"
           },
-          "experience" : {
-            "type" : "string"
-          },
-          "aboutme" : {
-            "type" : "string"
-          },
-          "profession" : {
-            "type" : "string"
-          },
-          "championship" : {
-            "type" : "integer"
-          },
-          "following" : {
-            "$ref" : "Key"
-          },
-          "followers" : {
-            "$ref" : "Key"
-          },
-          "sitescore" : {
-            "type" : "integer"
-          },
-          "userrating" : {
-            "type" : "integer"
+          "createDate" : {
+            "type" : "string",
+            "format" : "date-time"
           }
         }
       },
@@ -225,15 +222,71 @@
             "type" : "string"
           }
         }
+      },
+      "UserProfile" : {
+        "id" : "UserProfile",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          },
+          "fullName" : {
+            "type" : "string"
+          },
+          "userName" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "contactEmail" : {
+            "type" : "string"
+          },
+          "assetClass" : {
+            "type" : "string"
+          },
+          "style" : {
+            "type" : "string"
+          },
+          "holdingPeriod" : {
+            "type" : "string"
+          },
+          "experience" : {
+            "type" : "string"
+          },
+          "aboutMe" : {
+            "type" : "string"
+          },
+          "profession" : {
+            "type" : "string"
+          },
+          "championship" : {
+            "type" : "integer"
+          },
+          "following" : {
+            "$ref" : "Key"
+          },
+          "followers" : {
+            "$ref" : "Key"
+          },
+          "sitescore" : {
+            "type" : "integer"
+          },
+          "userRating" : {
+            "type" : "integer"
+          }
+        }
       }
     },
     "methods" : {
-      "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.insertUserProfile" : {
-        "request" : {
-          "$ref" : "UserProfile"
-        },
+      "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.registerAndLoginUserWithCode" : {
         "response" : {
-          "$ref" : "UserProfile"
+          "$ref" : "AuthToken"
+        }
+      },
+      "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.authenticateUser" : {
+        "response" : {
+          "$ref" : "AuthToken"
         }
       },
       "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.listUserProfile" : {
@@ -242,19 +295,11 @@
         }
       },
       "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.removeUserProfile" : {
-      },
-      "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.getUserProfile" : {
-        "response" : {
-          "$ref" : "UserProfile"
-        }
-      },
-      "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.updateUserProfile" : {
         "request" : {
-          "$ref" : "UserProfile"
-        },
-        "response" : {
-          "$ref" : "UserProfile"
+          "$ref" : "AuthToken"
         }
+      },
+      "com.tickertrek.cloudendpoints.api.UserProfileEndpoint.initializeCustomRegistration" : {
       }
     }
   }

@@ -13,38 +13,38 @@ public class UserProfile {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Key key;
 	   
-    private String  fullname;
-    private String  nickname;
+    private String  fullName;
+    private String  userName;
     private String  email;
-    private String  contactemail;
-    private String  assetclass;
+    private String  contactEmail;
+    private String  assetClass;
     private String  style;
-    private String  holdingperiod;
+    private String  holdingPeriod;
     private String  experience;
-    private String  aboutme;
+    private String  aboutMe;
     private String  profession;    
     private Integer championship;
     private Key following;
     private Key followers;
     private Integer sitescore;
-    private Integer userrating;
+    private Integer userRating;
 	public Key getKey() {
 		return key;
 	}
 	public void setKey(Key key) {
 		this.key = key;
 	}
-	public String getFullname() {
-		return fullname;
+	public String getFullName() {
+		return fullName;
 	}
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
+	public void setFullName(String fullname) {
+		this.fullName = fullname;
 	}
-	public String getNickname() {
-		return nickname;
+	public String getUserName() {
+		return userName;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setUserName(String nickname) {
+		this.userName = nickname;
 	}
 	public String getEmail() {
 		return email;
@@ -52,17 +52,17 @@ public class UserProfile {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getContactemail() {
-		return contactemail;
+	public String getContactEmail() {
+		return contactEmail;
 	}
-	public void setContactemail(String contactemail) {
-		this.contactemail = contactemail;
+	public void setContactEmail(String contactemail) {
+		this.contactEmail = contactemail;
 	}
-	public String getAssetclass() {
-		return assetclass;
+	public String getAssetClass() {
+		return assetClass;
 	}
-	public void setAssetclass(String assetclass) {
-		this.assetclass = assetclass;
+	public void setAssetClass(String assetclass) {
+		this.assetClass = assetclass;
 	}
 	public String getStyle() {
 		return style;
@@ -70,11 +70,11 @@ public class UserProfile {
 	public void setStyle(String style) {
 		this.style = style;
 	}
-	public String getHoldingperiod() {
-		return holdingperiod;
+	public String getHoldingPeriod() {
+		return holdingPeriod;
 	}
-	public void setHoldingperiod(String holdingperiod) {
-		this.holdingperiod = holdingperiod;
+	public void setHoldingPeriod(String holdingperiod) {
+		this.holdingPeriod = holdingperiod;
 	}
 	public String getExperience() {
 		return experience;
@@ -82,11 +82,11 @@ public class UserProfile {
 	public void setExperience(String experience) {
 		this.experience = experience;
 	}
-	public String getAboutme() {
-		return aboutme;
+	public String getAboutMe() {
+		return aboutMe;
 	}
-	public void setAboutme(String aboutme) {
-		this.aboutme = aboutme;
+	public void setAboutMe(String aboutme) {
+		this.aboutMe = aboutme;
 	}
 	public String getProfession() {
 		return profession;
@@ -118,10 +118,10 @@ public class UserProfile {
 	public void setSitescore(Integer sitescore) {
 		this.sitescore = sitescore;
 	}
-	public Integer getUserrating() {
-		return userrating;
+	public Integer getUserRating() {
+		return userRating;
 	}
-	public void setUserrating(Integer userrating) {
-		this.userrating = userrating;
+	public void setUserRating(Integer userrating) {
+		this.userRating = userrating;
 	}
 }
